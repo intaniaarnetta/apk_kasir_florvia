@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <title>Tambah Produk - Florvia</title>
+  <link rel="stylesheet" href="/css/style.css" />
+  <script src="https://unpkg.com/lucide@latest"></script>
+</head>
+<body class="edit-produk-body">
+  <%- include('layout/sidebar') %>
+
+  <main class="edit-produk-container">
+    <div class="edit-produk-content">
+      <h2>Tambah Produk Bunga</h2>
+      <form action="/produk/tambah" method="POST" enctype="multipart/form-data">
+        <label for="nama">Nama Produk</label>
+        <input type="text" id="nama" name="nama" required>
+
+        <label for="jenis">Jenis</label>
+        <input type="text" id="jenis" name="jenis" required>
+
+        <label for="asal">Asal</label>
+        <input type="text" id="asal" name="asal" required>
+
+        <label for="stok">Stok</label>
+        <input type="number" id="stok" name="stok" required>
+
+        <label for="harga">Harga</label>
+        <input type="number" id="harga" name="harga" required>
+
+        <label for="foto">Foto Produk</label>
+        <input type="file" id="foto" name="foto" required>
+
+        <button type="submit">Tambah Produk</button>
+      </form>
+    </div>
+  </main>
+
+  <script>lucide.createIcons();</script>
+</body>
+</html>

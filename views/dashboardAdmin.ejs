@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <title>Dashboard Admin - Florvia</title>
+  <link rel="stylesheet" href="/css/style.css">
+  <script src="https://unpkg.com/lucide@latest"></script>
+</head>
+<body>
+  <%- include('layout/sidebar') %>
+  <main class="dashboard-container dashboard-admin">
+    <h1 class="judul-halaman">🌸 Dashboard Admin</h1>
+    <!-- <p class="subtitle">Selamat datang, <%= user.username %>!</p> -->
+
+    <div class="card-grid">
+      <div class="dashboard-card admin">
+        <h2>📦 Total Produk</h2>
+        <p><%= totalProduk || 0 %></p>
+      </div>
+
+      <div class="dashboard-card admin">
+        <h2>💸 Total Transaksi</h2>
+        <p><%= totalTransaksi || 0 %></p>
+      </div>
+
+      <div class="dashboard-card admin">
+        <h2>🧑‍💼 Role</h2>
+        <p><%= user.role %></p>
+      </div>
+    </div>
+  </main>
+
+  <script>lucide.createIcons();</script>
+</body>
+</html>

@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Transaksi Saya - Florvia</title>
+  <link rel="stylesheet" href="/css/style.css" />
+  <script src="https://unpkg.com/lucide@latest"></script>
+</head>
+<body>
+  <%- include('layout/sidebar') %>
+
+  <main class="transaksi-container">
+    <h1 class="judul-halaman">🧾 Transaksi Saya</h1>
+
+    <% if (transaksi.length > 0) { %>
+      <% if (hanyaTransaksiTerakhir) { %>
+        <p class="info-box">📌 Menampilkan transaksi pembelian terakhir Anda.</p>
+      <% } else { %>
+        <p class="info-box">📋 Berikut riwayat semua transaksi Anda.</p>
+      <% } %>
+
+      <div class="export-buttons">
+        <form action="/transaksi/generate/pdf/pribadi" method="GET" target="_blank">
+          <button type="submit"><i data-lucide="file-text"></i> PDF</button>
+        </form>
+        <form action="/transaksi/generate/excel/pribadi" method="GET" target="_blank">
+          <button type="submit"><i data-lucide="file-spreadsheet"></i> Excel</button>
+        </form>
+      </div>
+
+      <div class="table-wrapper">
+        <table class="tabel-transaksi">
+          <thead>
+            <tr>
+              <th>No</th>
+              <th>Nama Saya</th>
+              <th>Produk</th>
+              <th>Jumlah</th>
+              <th>Tanggal Pembelian</th>
+              <th>Total Harga</th>
+              <th>Status</th>
+              <th>Aksi</th>
+            </tr>
+          </thead>
+          <tbody>
+            <% transaksi.forEach((item, index) => { %>
+              <tr>
+                <td><%= index + 1 %></td>
+                <td><%= item.user_id?.nama || '-' %></td>
+                <td><%= item.nama_produk || '-' %></td>
+                <td><%= item.jumlah %></td>
+                <td><%= item.tgl_transaksi ? new Date(item.tgl_transaksi).toLocaleDateString('id-ID', { day: 'numeric', month: 'long', year: 'numeric' }) : '-' %></td>
+                <td>Rp <%= item.total_harga?.toLocaleString('id-ID') || '-' %></td>
+                <td><%= item.status || '-' %></td>
+                <td>
+                  <% if (item.status === 'diproses') { %>
+                    <a href="/transaksi/selesai/<%= item._id %>" class="btn btn-primary"><i data-lucide="check-circle"></i> Selesaikan</a>
+                  <% } else { %>
+                    <span class="text-green">✅ Selesai</span>
+                  <% } %>
+                </td>
+              </tr>
+            <% }) %>
+          </tbody>
+        </table>
+      </div>
+    <% } else { %>
+      <p class="info-box">📭 Tidak ada transaksi yang ditampilkan.</p>
+    <% } %>
+  </main>
+
+  <script>lucide.createIcons();</script>
+</body>
+</html>

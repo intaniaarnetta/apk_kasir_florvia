@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <title>Daftar Produk - Florvia</title>
+  <link rel="stylesheet" href="/css/style.css">
+  <script src="https://unpkg.com/lucide@latest"></script>
+</head>
+<body>
+  <%- include('layout/sidebar') %>
+
+ <main class="produk-container">
+  <h1 class="judul-halaman">✨ Daftar Produk Florvia ✨</h1>
+
+  <div class="produk-grid">
+    <% produkList.forEach(produk => { %>
+      <div class="produk-card">
+        <img src="/image/<%= produk.foto %>" alt="Foto Produk <%= produk.nama %>">
+        <div class="produk-info">
+          <h3><%= produk.nama %></h3>
+          <p>Asal: <span><%= produk.asal %></span></p>
+          <p>Stok: <span><%= produk.stok %></span></p>
+          <p>Harga: <span>Rp <%= produk.harga%></span></p>
+        </div>
+        <div class="produk-actions">
+          <a href="/produk/edit/<%= produk._id %>" class="btn btn-edit"><i data-lucide="pencil"></i> Edit</a>
+          <a href="/produk/delete/<%= produk._id %>" class="btn btn-delete" onclick="return confirm('Yakin ingin menghapus produk ini?')"><i data-lucide="trash-2"></i> Hapus</a>
+        </div>
+      </div>
+    <% }); %>
+  </div>
+</main>
+
+  <script>
+    lucide.createIcons();
+  </script>
+</body>
+</html>

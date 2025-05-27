@@ -1,0 +1,22 @@
+<aside class="sidebar">
+  <h1>Florvia Kasir</h1>
+
+  <nav>
+    <ul>
+      <% if (user.role === 'admin' || user.role === 'petugas') { %>
+        <li><a href="/dashboard/admin"><i data-lucide="layout-dashboard"></i> <span>Dashboard</span></a></li>
+        <li><a href="/produk"><i data-lucide="box"></i> <span>Daftar Produk</span></a></li>
+        <li><a href="/produk/tambah"><i data-lucide="plus-square"></i> <span>Tambah Produk</span></a></li>
+        <li><a href="/transaksi"><i data-lucide="file-text"></i> <span>Riwayat Transaksi</span></a></li>
+      <% } else if (user.role === 'pengguna') { %>
+        <li><a href="/dashboard/pengguna"><i data-lucide="layout-dashboard"></i> <span>Dashboard</span></a></li>
+        <li><a href="/produk/pengguna"><i data-lucide="shopping-bag"></i> <span>Belanja Produk</span></a></li>
+        <li><a href="/transaksi/pribadi"><i data-lucide="receipt-text"></i> <span>Transaksi Saya</span></a></li>
+      <% } %>
+    </ul>
+  </nav>
+
+  <form action="/auth/logout" method="GET" class="logout-form">
+    <button type="submit"><i data-lucide="log-out"></i> Logout</button>
+  </form>
+</aside>

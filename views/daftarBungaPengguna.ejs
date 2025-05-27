@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Belanja Produk - Florvia</title>
+  <link rel="stylesheet" href="/css/style.css" />
+  <script src="https://unpkg.com/lucide@latest"></script>
+</head>
+<body>
+  <%- include('layout/sidebar') %>
+
+  <main class="produk-container">
+    <h1 class="judul-halaman">🛍️ Belanja Produk Bunga</h1>
+
+    <div class="produk-grid">
+      <% produkList.forEach(produk => { %>
+        <div class="produk-card">
+          <img src="/image/<%= produk.foto %>" alt="Foto <%= produk.nama %>">
+
+          <div class="produk-info">
+            <h3><%= produk.nama %></h3>
+            <p>Asal: <span><%= produk.asal %></span></p>
+            <p>Stok: <span><%= produk.stok %></span></p>
+            <p>Harga: <span>Rp <%= produk.harga.toLocaleString("id-ID") %></span></p>
+          </div>
+
+          <div class="produk-actions">
+            <% if (produk.stok > 0) { %>
+            <form action="/transaksi/beli/<%= produk._id %>" method="POST" class="produk-beli-form">
+              <label for="jumlah_<%= produk._id %>">Jumlah:</label>
+              <input type="number" id="jumlah_<%= produk._id %>" name="jumlah" min="1" max="<%= produk.stok %>" required />
+              <button type="submit" class="btn-beli">
+                <i data-lucide="shopping-bag"></i> Beli
+              </button>
+            </form>
+            <% } else { %>
+              <span class="btn-disabled">Stok Habis</span>
+            <% } %>
+          </div>
+        </div>
+      <% }); %>
+    </div>
+  </main>
+
+  <script>lucide.createIcons();</script>
+</body>
+</html>

@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Register - Florvia</title>
+  <link rel="stylesheet" href="/css/style.css" />
+</head>
+<body class="auth-body">
+  <div class="auth-container">
+    <h2>Daftar Akun Baru 🌼</h2>
+    <p class="subtitle">Isi data dirimu untuk bergabung</p>
+
+    <form action="/auth/register" method="POST">
+      <label for="nama">Nama</label>
+      <input type="text" id="nama" name="nama" required />
+
+      <label for="alamat">Alamat</label>
+      <input type="text" id="alamat" name="alamat" required />
+
+      <label for="telepon">Telepon</label>
+      <input type="text" id="telepon" name="telepon" required />
+
+      <label for="username">Username</label>
+      <input type="text" id="username" name="username" required />
+
+      <label for="password">Password</label>
+      <div class="password-wrapper">
+        <input type="password" id="password" name="password" required />
+        <i data-lucide="eye-off" class="toggle-password" onclick="togglePassword(this)"></i>
+      </div>
+
+      <button type="submit">Daftar</button>
+    </form>
+
+    <p class="auth-note">
+      Sudah punya akun? <a href="/auth/login">Login di sini</a>
+    </p>
+  </div>
+  <script src="https://unpkg.com/lucide@latest"></script>
+  <script>
+    function togglePassword(icon) {
+      const input = icon.previousElementSibling;
+      const isHidden = input.getAttribute("type") === "password";
+
+      input.setAttribute("type", isHidden ? "text" : "password");
+      icon.setAttribute("data-lucide", isHidden ? "eye" : "eye-off");
+
+      lucide.createIcons();
+    }
+    lucide.createIcons();
+  </script>
+</body>
+</html>

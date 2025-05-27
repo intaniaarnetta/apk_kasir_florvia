@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <title>Edit Produk - Florvia</title>
+  <link rel="stylesheet" href="/css/style.css" />
+  <script src="https://unpkg.com/lucide@latest"></script>
+</head>
+<body class="edit-produk-body">
+  <%- include('layout/sidebar') %>
+  <main class="edit-produk-container">
+    <div class="edit-produk-content">
+      <h2>Edit Produk Bunga</h2>
+      <form action="/produk/edit/<%= produk._id %>" method="POST" enctype="multipart/form-data">
+        <label for="nama">Nama Produk</label>
+        <input type="text" id="nama" name="nama" value="<%= produk.nama %>" required>
+
+        <label for="jenis">Jenis</label>
+        <input type="text" id="jenis" name="jenis" value="<%= produk.jenis %>" required>
+
+        <label for="asal">Asal</label>
+        <input type="text" id="asal" name="asal" value="<%= produk.asal %>" required>
+
+        <label for="stok">Stok</label>
+        <input type="number" id="stok" name="stok" value="<%= produk.stok %>" required>
+
+        <label for="harga">Harga</label>
+        <input type="number" id="harga" name="harga" value="<%= produk.harga %>" required>
+
+        <label for="foto">Foto Baru (Opsional)</label>
+        <input type="file" id="foto" name="foto">
+
+        <button type="submit">Simpan Perubahan</button>
+      </form>
+    </div>
+  </main>
+
+  <script>lucide.createIcons();</script>
+</body>
+</html>

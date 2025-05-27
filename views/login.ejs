@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Login - Florvia</title>
+  <link rel="stylesheet" href="/css/style.css" />
+</head>
+<body class="auth-body">
+  <div class="auth-container">
+    <h2>Selamat Datang 🌸</h2>
+    <p class="subtitle">Silakan login untuk melanjutkan</p>
+
+    <form action="/auth/login" method="POST">
+      <label for="username">Username</label>
+      <input type="text" id="username" name="username" required />
+
+    <label for="password">Password</label>
+    <div class="password-wrapper">
+      <input type="password" id="password" name="password" required />
+      <i data-lucide="eye-off" class="toggle-password" onclick="togglePassword(this)"></i>
+    </div>
+
+      <button type="submit">Masuk</button>
+    </form>
+
+    <p class="auth-note">
+      Belum punya akun? <a href="/auth/register">Daftar sekarang</a>
+    </p>
+  </div>
+  <script src="https://unpkg.com/lucide@latest"></script>
+  <script>
+    function togglePassword(icon) {
+      const input = icon.previousElementSibling;
+      const isHidden = input.getAttribute("type") === "password";
+
+      input.setAttribute("type", isHidden ? "text" : "password");
+      icon.setAttribute("data-lucide", isHidden ? "eye" : "eye-off");
+
+      lucide.createIcons();
+    }
+
+    lucide.createIcons();
+  </script>
+</body>
+</html>

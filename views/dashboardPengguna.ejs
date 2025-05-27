@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <title>Dashboard Pengguna - Florvia</title>
+  <link rel="stylesheet" href="/css/style.css">
+  <script src="https://unpkg.com/lucide@latest"></script>
+</head>
+<body>
+  <%- include('layout/sidebar') %>
+
+  <main class="dashboard-container dashboard-user">
+    <h1 class="judul-halaman">🌼 Halo <%= user.username %>!</h1>
+    <!-- <p class="subtitle">Selamat datang di Florvia 💐 Silakan belanja produk bunga favoritmu!</p> -->
+
+    <div class="card-grid">
+      <div class="dashboard-card user">
+        <h2>🛍️ Belanja Produk</h2>
+        <a href="/produk/pengguna" class="btn-beli">Lihat Produk</a>
+      </div>
+
+      <div class="dashboard-card user">
+        <h2>📜 Transaksi Saya</h2>
+        <a href="/transaksi/pribadi" class="btn-beli">Lihat Riwayat</a>
+      </div>
+
+      <div class="dashboard-card user">
+        <h2>👤 Role</h2>
+        <p><%= user.role %></p>
+      </div>
+    </div>
+  </main>
+
+  <script>lucide.createIcons();</script>
+</body>
+</html>

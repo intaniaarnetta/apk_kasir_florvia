@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Riwayat Transaksi - Florvia</title>
+  <link rel="stylesheet" href="/css/style.css">
+  <script src="https://unpkg.com/lucide@latest"></script>
+</head>
+<body>
+  <%- include('layout/sidebar') %>
+
+  <main class="transaksi-container">
+    <h1 class="judul-halaman">📄 Riwayat Transaksi Bunga</h1>
+    <div class="export-buttons">
+      <form action="/transaksi/generate/pdf" method="GET">
+        <button type="submit"><i data-lucide="file-text"></i> PDF</button>
+      </form>
+      <form action="/transaksi/generate/excel" method="GET">
+        <button type="submit"><i data-lucide="file-spreadsheet"></i> Excel</button>
+      </form>
+    </div>
+
+    <div class="table-wrapper">
+      <table class="tabel-transaksi">
+        <thead>
+          <tr>
+            <th>No</th>
+            <th>Nama Pembeli</th>
+            <th>Produk</th>
+            <th>Tanggal Pembelian</th>
+            <th>Status</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% transaksi.forEach((item, index) => { %>
+            <tr>
+              <td><%= index + 1 %></td>
+              <td><%= item.user_id?.nama || '-' %></td>
+              <td><%= item.nama_produk || '-' %></td>
+              <td>
+                <%= item.tgl_transaksi 
+                  ? new Date(item.tgl_transaksi).toLocaleDateString('id-ID', { day: 'numeric', month: 'long', year: 'numeric' }) 
+                  : '-' 
+                %>
+              </td>
+              <td><%= item.status || '-' %></td>
+            </tr>
+          <% }) %>
+        </tbody>
+      </table>
+    </div>
+  </main>
+
+  <script>
+    lucide.createIcons();
+  </script>
+</body>
+</html>
